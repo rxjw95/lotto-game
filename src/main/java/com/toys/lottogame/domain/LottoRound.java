@@ -1,4 +1,4 @@
-package com.toys.lottogame.repository.domain;
+package com.toys.lottogame.domain;
 
 import com.toys.lottogame.vo.RoundStatus;
 import com.toys.lottogame.vo.WinNumber;

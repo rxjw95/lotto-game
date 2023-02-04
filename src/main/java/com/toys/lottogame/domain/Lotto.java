@@ -1,4 +1,4 @@
-package com.toys.lottogame.repository.domain;
+package com.toys.lottogame.domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
