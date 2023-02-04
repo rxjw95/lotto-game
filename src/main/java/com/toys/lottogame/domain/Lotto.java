@@ -1,43 +1,28 @@
 package com.toys.lottogame.domain;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Lotto {
 
     @Id
     @GeneratedValue
-    private Long LottoId;
+    private Long lottoId;
 
-    @ManyToOne
-    @JoinColumn(name = "lotto_group_id")
-    private LottoGroup lottoGroup;
-
-    private String pickNum1;
-    private String pickNum2;
-    private String pickNum3;
-    private String pickNum4;
-    private String pickNum5;
-    private String pickNum6;
+    @OneToMany(mappedBy = "lotto")
+    private List<Game> games = new ArrayList<>();
 
     protected Lotto() {
     }
 
-    public Lotto(
-            LottoGroup lottoGroup,
-            String pickNum1,
-            String pickNum2,
-            String pickNum3,
-            String pickNum4,
-            String pickNum5,
-            String pickNum6) {
-        this.lottoGroup = lottoGroup;
-        this.pickNum1 = pickNum1;
-        this.pickNum2 = pickNum2;
-        this.pickNum3 = pickNum3;
-        this.pickNum4 = pickNum4;
-        this.pickNum5 = pickNum5;
-        this.pickNum6 = pickNum6;
+    public void add(Game game) {
+        games.add(game);
     }
 
 }

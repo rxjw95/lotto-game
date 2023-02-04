@@ -1,26 +1,26 @@
 package com.toys.lottogame.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.toys.lottogame.vo.Money;
+import jakarta.persistence.*;
 
 @Entity
-@Table(name = "users")
+@Table(name = "users", uniqueConstraints = @UniqueConstraint(name = "nickname_unique", columnNames = {"nickname"}))
 public class User {
 
     @Id
-    private String userId;
+    @GeneratedValue
+    private Long userId;
 
-    private String password;
     private String nickname;
     private String email;
+
+    @Embedded
     private Money money;
 
     protected User() {
     }
 
-    public User(String password, String nickname, String email, Money money) {
-        this.password = password;
+    public User(String nickname, String email, Money money) {
         this.nickname = nickname;
         this.email = email;
         this.money = money;
