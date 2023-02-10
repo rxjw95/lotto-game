@@ -11,7 +11,7 @@ public class LotteryRound {
 
     public void validatePurchaseAvailable() {
         if (availability == PurchaseAvailability.UNAVAILABLE) {
-            throw new IllegalStateException("round closed");
+            throw new IllegalStateException("round closed.");
         }
     }
 
