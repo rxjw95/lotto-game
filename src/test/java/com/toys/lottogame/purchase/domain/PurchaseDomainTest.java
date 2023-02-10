@@ -3,14 +3,14 @@ package com.toys.lottogame.purchase.domain;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class PurchaseDummies {
+public class PurchaseDomainTest {
     protected LotteryRound openedLotteryRoundDummy;
     protected LotteryRound closedLotteryRoundDummy;
     protected Game gameDummy;
     protected Lottery lotteryDummy;
     protected Purchaser purchaserDummy;
 
-    public PurchaseDummies() {
+    public PurchaseDomainTest() {
         openedLotteryRoundDummy = new LotteryRound(2);
         closedLotteryRoundDummy = new LotteryRound(1);
         closedLotteryRoundDummy.close();

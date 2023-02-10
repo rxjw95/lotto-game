@@ -6,7 +6,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.*;
 
-class PurchaseTest extends PurchaseDummies {
+class PurchaseTest extends PurchaseDomainTest {
 
     @Test
     public void 진행중인_회차에서는_로또를_구매할_수_있다() {
