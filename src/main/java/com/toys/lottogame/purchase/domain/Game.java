@@ -34,7 +34,7 @@ public class Game {
 
     private void verifySizeSixWithoutDuplication(List<Integer> picks) {
         if (picks.stream().distinct().count() != 6) {
-            throw new IllegalArgumentException("picks size must be six.");
+            throw new IllegalArgumentException("picks must not be duplicated and picks size must be six.");
         }
     }
 
