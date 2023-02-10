@@ -40,4 +40,8 @@ public class Purchase {
         this.amounts = new Money(lottery.getGameCount() * GAME_PRICE);
     }
 
+    public Money getAmount() {
+        return amounts;
+    }
+
 }
