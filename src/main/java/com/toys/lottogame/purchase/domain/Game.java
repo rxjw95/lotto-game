@@ -1,6 +1,7 @@
 package com.toys.lottogame.purchase.domain;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Game {
     private int pick1;
@@ -21,15 +22,9 @@ public class Game {
     }
 
     private void verify(List<Integer> picks) {
-        verifyNull(picks);
+        Objects.requireNonNull(picks, "picks is null.");
         verifySizeSixWithoutDuplication(picks);
         verifyGreaterThanOrEqualOneAndLessThanOrEqualFortyFive(picks);
-    }
-
-    private void verifyNull(List<Integer> picks) {
-        if (picks == null) {
-            throw new IllegalArgumentException("picks is null.");
-        }
     }
 
     private void verifySizeSixWithoutDuplication(List<Integer> picks) {
