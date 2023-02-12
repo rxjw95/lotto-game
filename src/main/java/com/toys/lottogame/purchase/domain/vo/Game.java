@@ -1,8 +1,14 @@
-package com.toys.lottogame.purchase.domain;
+package com.toys.lottogame.purchase.domain.vo;
+
+import jakarta.persistence.Embeddable;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 import java.util.Objects;
 
+@Embeddable
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Game {
     private int pick1;
     private int pick2;
@@ -38,5 +44,4 @@ public class Game {
             throw new IllegalArgumentException("pick number range must be 1 <= number <= 45");
         }
     }
-
 }

@@ -1,29 +1,44 @@
 package com.toys.lottogame.purchase.domain;
 
-import java.util.Objects;
-import java.util.UUID;
+import com.toys.lottogame.purchase.domain.vo.Game;
+import com.toys.lottogame.purchase.domain.vo.Games;
+import com.toys.lottogame.purchase.domain.vo.Money;
+import com.toys.lottogame.round.domain.LotteryRoundId;
+import jakarta.persistence.*;
 
+import java.util.List;
+import java.util.Objects;
+
+@Entity
+@Access(AccessType.FIELD)
 public class Purchase {
     private static final int GAME_PRICE = 1_000;
 
-    private String purchaseId;
-    private LotteryRound lotteryRound;
+    @EmbeddedId
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private PurchaseId purchaseId;
+
+    @Embedded
+    private LotteryRoundId lotteryRoundId;
+
+    @Embedded
     private Purchaser purchaser;
-    private Lottery lottery;
+
+    @ElementCollection
+    @CollectionTable(name = "game", joinColumns = @JoinColumn(name = "purchase_id"))
+    private List<Game> games;
+
+    @Embedded
+    @AttributeOverride(name = "value", column = @Column(name = "amounts"))
     private Money amounts;
 
-    public Purchase(LotteryRound lotteryRound, Lottery lottery, Purchaser purchaser) {
-        this.purchaseId = UUID.randomUUID().toString();
-        setLotteryRound(lotteryRound);
+    public Purchase(Games games, Purchaser purchaser) {
         setPurchaser(purchaser);
-        setLottery(lottery);
+        setGames(games);
         calculateAmounts();
     }
 
-    private void setLotteryRound(LotteryRound lotteryRound) {
-        Objects.requireNonNull(lotteryRound, "no lottery round");
-        lotteryRound.validatePurchaseAvailable();
-        this.lotteryRound = lotteryRound;
+    protected Purchase() {
     }
 
     private void setPurchaser(Purchaser purchaser) {
@@ -31,13 +46,13 @@ public class Purchase {
         this.purchaser = purchaser;
     }
 
-    private void setLottery(Lottery lottery) {
-        Objects.requireNonNull(lottery, "no lottery");
-        this.lottery = lottery;
+    private void setGames(Games games) {
+        Objects.requireNonNull(games, "no games");
+        this.games = games.toList();
     }
 
     private void calculateAmounts() {
-        this.amounts = new Money(lottery.getGameCount() * GAME_PRICE);
+        this.amounts = new Money(games.size() * GAME_PRICE);
     }
 
     public Money getAmount() {
