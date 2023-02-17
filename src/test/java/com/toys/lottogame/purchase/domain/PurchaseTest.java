@@ -1,7 +1,7 @@
 package com.toys.lottogame.purchase.domain;
 
+import com.toys.lottogame.common.vo.Money;
 import com.toys.lottogame.purchase.domain.vo.Games;
-import com.toys.lottogame.purchase.domain.vo.Money;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;

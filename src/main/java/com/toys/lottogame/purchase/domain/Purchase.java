@@ -1,17 +1,21 @@
 package com.toys.lottogame.purchase.domain;
 
+import com.toys.lottogame.common.CreatedEntity;
+import com.toys.lottogame.common.vo.Money;
 import com.toys.lottogame.purchase.domain.vo.Game;
 import com.toys.lottogame.purchase.domain.vo.Games;
-import com.toys.lottogame.purchase.domain.vo.Money;
 import com.toys.lottogame.round.domain.LotteryRoundId;
 import jakarta.persistence.*;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 import java.util.Objects;
 
 @Entity
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Access(AccessType.FIELD)
-public class Purchase {
+public class Purchase extends CreatedEntity {
     private static final int GAME_PRICE = 1_000;
 
     @EmbeddedId
@@ -36,9 +40,6 @@ public class Purchase {
         setPurchaser(purchaser);
         setGames(games);
         calculateAmounts();
-    }
-
-    protected Purchase() {
     }
 
     private void setPurchaser(Purchaser purchaser) {
