@@ -19,7 +19,7 @@ public class Games {
 
     private void verifyMoreThanFive(List<Game> games) {
         if (games.size() > 5) {
-            throw new IllegalArgumentException("games max count must be five");
+            throw new IllegalArgumentException("games max count must be five.");
         }
     }
 
