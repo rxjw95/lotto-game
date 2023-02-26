@@ -15,15 +15,15 @@ import java.util.List;
 @Access(AccessType.FIELD)
 public class LotteryRound {
 
-    @EmbeddedId
+    @Id
     @GeneratedValue
-    private LotteryRoundId lotteryRoundId;
+    private Long lotteryRoundId;
 
     @Embedded
     @AttributeOverride(name = "value", column = @Column(name = "total_amount"))
     private Money totalAmount;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "win_id")
     private Win win;
 
@@ -32,9 +32,28 @@ public class LotteryRound {
     private List<Winner> winner = new ArrayList<>();
 
     @Enumerated(EnumType.STRING)
-    private RoundStatus roundStatus = RoundStatus.OPEN;
+    private RoundStatus roundStatus;
+
+    public LotteryRound(Money initialMoney) {
+        this.totalAmount = initialMoney;
+    }
+
+    public void open() {
+        roundStatus = RoundStatus.OPEN;
+    }
 
     public void close() {
+        if (roundStatus == RoundStatus.CLOSE) {
+            throw new RuntimeException("Already closed.");
+        }
         roundStatus = RoundStatus.CLOSE;
+    }
+
+    public void announce(Win win) {
+        this.win = win;
+    }
+
+    public RoundStatus getRoundStatus() {
+        return roundStatus;
     }
 }

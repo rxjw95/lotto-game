@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 
 public class PurchaseDomainDummy {
     private final Game game = new Game(List.of(1, 2, 3, 4, 5, 6));
-    private final Purchaser purchaser = new Purchaser("tester@email.com");
+    private final Purchaser purchaser = new Purchaser("123", "tester@email.com");
 
     protected Game makeGameDummy() {
         return game;

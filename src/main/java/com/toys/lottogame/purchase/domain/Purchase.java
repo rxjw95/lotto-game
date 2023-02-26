@@ -4,7 +4,6 @@ import com.toys.lottogame.common.CreatedEntity;
 import com.toys.lottogame.common.vo.Money;
 import com.toys.lottogame.purchase.domain.vo.Game;
 import com.toys.lottogame.purchase.domain.vo.Games;
-import com.toys.lottogame.round.domain.LotteryRoundId;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
@@ -18,12 +17,11 @@ import java.util.Objects;
 public class Purchase extends CreatedEntity {
     private static final int GAME_PRICE = 1_000;
 
-    @EmbeddedId
+    @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private PurchaseId purchaseId;
+    private String purchaseId;
 
-    @Embedded
-    private LotteryRoundId lotteryRoundId;
+    private Long roundId;
 
     @Embedded
     private Purchaser purchaser;

@@ -14,4 +14,5 @@ public class Winner {
         this.memberId = memberId;
         this.email = email;
     }
+
 }

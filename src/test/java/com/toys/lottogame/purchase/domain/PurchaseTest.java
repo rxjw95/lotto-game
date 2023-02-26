@@ -12,7 +12,7 @@ class PurchaseTest extends PurchaseDomainDummy {
     @ValueSource(ints = {1, 2, 3, 4, 5})
     public void 구매가격은_로또의_게임의_수_곱하기_게임_가격이다(int count) {
         Games gameDummies = makeGamesDummy(count);
-        Purchaser purchaserDummy = new Purchaser("wafo");
+        Purchaser purchaserDummy = new Purchaser("123", "wafo");
 
         Purchase purchase = new Purchase(gameDummies, purchaserDummy);
         Assertions.assertThat(purchase.getAmount()).isEqualTo(new Money(count * 1_000));

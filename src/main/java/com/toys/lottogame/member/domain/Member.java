@@ -1,16 +1,15 @@
 package com.toys.lottogame.member.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.EmbeddedId;
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Member {
-    @EmbeddedId
-    private MemberId memberId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String memberId;
     @Column(name = "email", nullable = false)
     private String email;
     @Column(name = "password", nullable = false)
